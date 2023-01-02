@@ -65,7 +65,7 @@ function Header() {
           <Image
             src={ppf}
             alt="profile pic"
-            className="h-10 w-10 rounded-full cursor-pointer"
+            className="h-10 w-10 rounded-full cursor-pointer object-cover"
           />
         </div>
       </div>

@@ -13,7 +13,7 @@ function Stories() {
       id: i,
     }));
     setSuggestions(suggestions);
-    console.log(suggestions);
+    //console.log(suggestions);
   }, []);
 
   return (

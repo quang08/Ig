@@ -18,7 +18,7 @@ function Post({ id, username, userImg, img, caption }) {
       {/* Header */}
       <div className="flex items-center p-5">
         <Image
-          className="rounded-full w-12 h-12 border p-1 mr-3"
+          className="rounded-full w-12 h-12 border p-1 mr-3 object-cover"
           src={ppf}
           alt="profile pic"
         />
