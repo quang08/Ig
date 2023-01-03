@@ -35,10 +35,12 @@ function Suggestions() {
           />
           <div className="flex-1 ml-4">
             <h2 className="font-semibold text-sm">{profile.username}</h2>
-            <h3 className="text-xs text-gray-400">Works at {profile.work}</h3>
+            <h3 className="text-xs text-gray-400 w-[200px] truncate">Works at {profile.work}</h3>
           </div>
 
-          <button className="text-xs font-semibold text-blue-400">Follow</button>
+          <button className="text-xs font-semibold text-blue-400">
+            Follow
+          </button>
         </div>
       ))}
     </div>
