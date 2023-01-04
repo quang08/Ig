@@ -28,7 +28,7 @@ function Modal() {
       timestamp: serverTimestamp()
     })
     //2) get the post ID for the newly created post
-    console.log("New doc added", docRef.id);
+    //console.log("New doc added", docRef.id);
 
     //3) upload the image to Firebase's storage with the post ID
     const imageRef = ref(storage, `posts/${docRef.id}/image`); //create a reference to the image
