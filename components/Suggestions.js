@@ -9,7 +9,7 @@ function Suggestions() {
     const suggestions = [...Array(5)].map((_, i) => ({
       username: faker.internet.userName(),
       avatar: faker.image.avatar(),
-      work: faker.company.companyName(),
+      work: faker.company.name(),
       id: i,
     }));
     setSuggestions(suggestions);
