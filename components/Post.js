@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import {
   BookmarkIcon,
   ChatIcon,
@@ -8,36 +8,72 @@ import {
   PaperAirplaneIcon,
 } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
-// import Image from "next/image";
 import { useSession } from "next-auth/react";
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import Moment from 'react-moment';
+import Moment from "react-moment";
 
 function Post({ id, username, userImg, img, caption }) {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [hasLiked, setHasLiked] = useState(false);
 
+  //********Likes**********
+  //3. save likes in setLikes array
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "posts", id, "likes"), (snapshot) =>
+        setLikes(snapshot.docs)
+      ),
+    [db, id]
+  );
+
+  //2. everytime new like, set setHasliked to true/false
+  useEffect(() => {
+    setHasLiked(
+      likes.findIndex((like) => like.id === session?.user?.uid) !== -1
+    );
+  }, [likes]);
+
+  //1. check if not liked, create a doc 'likes' and save username and uid
+  //if liked, delete that doc to create that like/unlike action
+  const likePost = async () => {
+    if (hasLiked) {
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.uid));
+    } else {
+      await setDoc(doc(db, "posts", id, "likes", session.user.uid), {
+        username: session.user.username,
+      });
+    }
+  };
+
+  //********Comments**********
   //2. update the comments array to populate comments
   useEffect(() => {
-    const unsubscribe = onSnapshot(query(
-      collection(db, "posts", id, "comments"),
-      orderBy("timestamp", "asc")),
+    const unsubscribe = onSnapshot(
+      query(
+        collection(db, "posts", id, "comments"),
+        orderBy("timestamp", "desc")
+      ),
       (snapshot) => {
         setComments(snapshot.docs);
       }
     );
 
     return unsubscribe;
-  }, [db]);
+  }, [db, id]);
 
   //console.log(comments)
 
@@ -78,7 +114,14 @@ function Post({ id, username, userImg, img, caption }) {
       {session && (
         <div className="flex justify-between px-4 pt-4">
           <div className="flex items-center space-x-4">
-            <HeartIcon className="btn" />
+            {hasLiked ? (
+              <HeartIconFilled
+                onClick={likePost}
+                className="btn text-red-500"
+              />
+            ) : (
+              <HeartIcon onClick={likePost} className="btn" />
+            )}
             <ChatIcon className="btn" />
             <PaperAirplaneIcon className="btn rotate-45" />
           </div>
@@ -93,6 +136,12 @@ function Post({ id, username, userImg, img, caption }) {
 
       {/* Caption */}
       <p className="p-5 truncate text-lg">
+        {likes.length > 1 && (
+          <p className="font-bold mb-1">{likes.length} likes</p>
+        )}
+        {likes.length === 1 && (
+          <p className="font-bold mb-1">{likes.length} like</p>
+        )}
         <span className="font-bold mr-1">{username} </span>
         {caption}
       </p>
@@ -114,7 +163,9 @@ function Post({ id, username, userImg, img, caption }) {
                 {comment.data().comment}
               </p>
 
-              <Moment className="text-gray-400 text-sm" fromNow>{comment.data().timestamp?.toDate()}</Moment>
+              <Moment className="text-gray-400 text-sm" fromNow>
+                {comment.data().timestamp?.toDate()}
+              </Moment>
             </div>
           ))}
         </div>
