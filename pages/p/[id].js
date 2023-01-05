@@ -113,18 +113,30 @@ function Comments({ id }) {
               src={post.image}
               className="w-full object-cover rounded-t-lg md:rounded-tl-lg md:rounded-tr-none"
             />
-            {(session && likes.length > 1) && (
-              <p className="font-bold mb-1 ml-5 mt-3">{likes.length} likes</p>
-            )}
-            {(session && likes.length === 1) && (
-              <p className="font-bold mb-1 ml-5 mt-3">{likes.length} like</p>
-            )}
+            <div>
+              {session && likes.length > 1 && (
+                <p className="font-bold mb-1 ml-5 mt-3 text-xl">
+                  {likes.length} likes
+                </p>
+              )}
+              {session && likes.length === 1 && (
+                <p className="font-bold mb-1 ml-5 mt-3 text-xl">
+                  {likes.length} like
+                </p>
+              )}
+              <Moment
+                className="text-gray-400 text-xs pl-5 pr-5 uppercase"
+                fromNow
+              >
+                {post.timestamp?.toDate()}
+              </Moment>
+            </div>
           </div>
 
           <div className="col-span-1">
-            <div className="flex items-center p-5">
+            <div className="flex items-center p-3">
               <img
-                className="rounded-full w-12 h-12 md:w-16 md:h-16 border p-1 mr-3 object-cover"
+                className="rounded-full w-12 h-12 md:w-14 md:h-14 border p-1 mr-3 object-cover"
                 src={post.profileImg}
                 alt="profile pic"
               />
@@ -134,9 +146,9 @@ function Comments({ id }) {
             </div>
 
             {/* Caption */}
-            <div className="p-5 truncate text-lg flex items-center">
+            <div className="p-3 truncate text-lg flex items-center">
               <img
-                className="rounded-full w-12 h-12 md:w-16 md:h-16 border p-1 mr-3 object-cover"
+                className="rounded-full w-12 h-12 md:w-14 md:h-14 border p-1 mr-3 object-cover"
                 src={post.profileImg}
                 alt="profile pic"
               />
@@ -145,19 +157,19 @@ function Comments({ id }) {
             </div>
 
             {(session && comments.length > 0) > 0 && (
-              <div className="pl-3 pr-5 ml-5 h-[560px] overflow-y-scroll">
+              <div className="p-4 text-lg h-[665px] overflow-y-scroll">
                 {comments.map((comment) => (
                   <div
                     key={comment.id}
                     className="flex items-center space-x-2 mb-3"
                   >
                     <img
-                      className="h-7 rounded-full"
+                      className="h-12 rounded-full"
                       src={comment.data().userImage}
                       alt="comment profile pic"
                     />
                     <p className="text-md flex-1">
-                      <span className="font-bold mr-2">
+                      <span className="font-bold mr-2 ml-2">
                         {comment.data().username}
                       </span>
                       {comment.data().comment}
@@ -230,6 +242,4 @@ export async function getServerSideProps(context) {
       id,
     },
   };
-
-  // ...
 }

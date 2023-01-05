@@ -24,7 +24,7 @@ import { db } from "../firebase";
 import Moment from "react-moment";
 import { useRouter } from "next/router";
 
-function Post({ id, username, userImg, img, caption }) {
+function Post({ id, username, userImg, img, caption, timestamp }) {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
@@ -135,7 +135,7 @@ function Post({ id, username, userImg, img, caption }) {
       )}
 
       {/* Caption and likes count */}
-      <div className="p-5 truncate text-lg">
+      <div className="pl-5 pr-5 mb-2 truncate text-lg">
         {likes.length > 1 && (
           <p className="font-bold mb-1">{likes.length} likes</p>
         )}
@@ -147,15 +147,18 @@ function Post({ id, username, userImg, img, caption }) {
       </div>
 
       {/* comments */}
-      {(session && comments.length > 0) && (
-        <div className="pl-3 pr-5 ml-5 h-20 overflow-y-scroll">
+      {session && comments.length > 3 && (
+        <p
+          onClick={() => router.push(`/p/${id}`)}
+          className="text-gray-400 pr-5 pl-5 cursor-pointer text-lg"
+        >
+          View all {comments.length} comments
+        </p>
+      )}
+      {session && comments.length > 0 && (
+        <div className="pl-5 pr-5 overflow-y-scroll text-lg">
           {comments.slice(0, 2).map((comment) => (
-            <div key={comment.id} className="flex items-center space-x-2 mb-3">
-              <img
-                className="h-7 rounded-full"
-                src={comment.data().userImage}
-                alt="comment profile pic"
-              />
+            <div key={comment.id} className="flex items-center space-x-2 mb-1">
               <p className="text-md flex-1">
                 <span className="font-bold mr-2">
                   {comment.data().username}
@@ -171,14 +174,9 @@ function Post({ id, username, userImg, img, caption }) {
         </div>
       )}
 
-      {(session && comments.length > 3) && (
-        <p
-          onClick={() => router.push(`/p/${id}`)}
-          className="text-gray-400 pl-3 pr-5 ml-5 cursor-pointer"
-        >
-          View all {comments.length} comments
-        </p>
-      )}
+      <Moment className="text-gray-400 text-sm pl-5 pr-5 uppercase" fromNow>
+        {timestamp.toDate()}
+      </Moment>
 
       {/* input box */}
       {session && (
