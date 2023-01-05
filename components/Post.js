@@ -96,7 +96,7 @@ function Post({ id, username, userImg, img, caption, timestamp }) {
   };
 
   return (
-    <div className="bg-white border my-7 rounded-lg">
+    <div className="bg-white border my-7 rounded-lg dark:bg-black dark:text-white dark:border-none">
       {/* Header */}
       <div className="flex items-center p-5">
         <img
@@ -114,7 +114,7 @@ function Post({ id, username, userImg, img, caption, timestamp }) {
 
       {/* Buttons */}
       {session && (
-        <div className="flex justify-between px-4 pt-4">
+        <div className="flex justify-between px-4 pt-4 mb-2">
           <div className="flex items-center space-x-4">
             {hasLiked ? (
               <HeartIconFilled
@@ -142,7 +142,7 @@ function Post({ id, username, userImg, img, caption, timestamp }) {
         {likes.length === 1 && (
           <p className="font-bold mb-1">{likes.length} like</p>
         )}
-        <span className="font-bold mr-1">{username} </span>
+        <span className="font-bold mr-1">{username}</span>
         {caption}
       </div>
 
@@ -183,7 +183,7 @@ function Post({ id, username, userImg, img, caption, timestamp }) {
         <form className="flex items-center p-4">
           <EmojiHappyIcon className="h-7" />
           <input
-            className="flex-1 border-none outline-none focus:ring-0"
+            className="flex-1 border-none outline-none focus:ring-0 rounded-lg m-2 dark:bg-black"
             type="text"
             value={comment}
             onChange={(e) => setComment(e.target.value)}

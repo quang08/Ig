@@ -10,7 +10,7 @@ function Feed() {
 
   return (
     <main
-      className={`grid grid-cols-1 md:grid-cols-2 md:max-w-3xl xl:grid-cols-3 xl:max-w-6xl mx-auto ${
+      className={`grid grid-cols-1 md:grid-cols-2 md:max-w-3xl xl:grid-cols-3 xl:max-w-6xl mx-auto dark:bg-neutral-900 dark:text-white ${
         !session && "!grid-cols-1 !max-width-3xl"
       }`}
     >

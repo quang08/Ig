@@ -20,7 +20,7 @@ function Stories() {
 
   return (
     //overflow-x-scroll
-    <div className="flex space-x-4 p-6 bg-white mt-8 border-gray-200 border rounded-md overflow-x-scroll">
+    <div className="flex space-x-4 p-6 bg-white mt-8 border-gray-200 border rounded-md overflow-x-scroll dark:bg-black dark:text-white dark:border-none">
         {session && (
           <Story img={session.user.image} username={session.user.username} />
         )}

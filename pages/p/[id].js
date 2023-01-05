@@ -103,10 +103,10 @@ function Comments({ id }) {
     }
   };
   return (
-    <>
+    <div className="dark:bg-neutral-900">
       <Header />
-      <div className="grid grid-cols-1 max-w-xl md:max-w-6xl mx-auto my-auto">
-        <div className="bg-white border my-7 rounded-xl grid md:grid-cols-2">
+      <div className="grid grid-cols-1 max-w-xl md:max-w-6xl mx-auto my-auto dark:text-white dark:bg-neutral-900">
+        <div className="bg-white border my-7 rounded-xl grid md:grid-cols-2 dark:bg-black dark:border-none">
           <div className="col-span-1">
             {/* img */}
             <img
@@ -211,7 +211,7 @@ function Comments({ id }) {
             <form className="flex items-center p-4">
               <EmojiHappyIcon className="h-7" />
               <input
-                className="flex-1 border-none outline-none focus:ring-0"
+                className="flex-1 border-none outline-none focus:ring-0 dark:bg-black"
                 type="text"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
@@ -229,7 +229,7 @@ function Comments({ id }) {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

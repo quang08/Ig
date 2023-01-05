@@ -8,10 +8,10 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-    <div className='bg-gray-50 h-screen overflow-y-scroll'>
-      <Header/>
-      <Feed/>
-      <Modal/>
+    <div className="bg-gray-50 h-screen overflow-y-scroll dark:bg-neutral-900">
+      <Header />
+      <Feed />
+      <Modal />
     </div>
   );
 }
