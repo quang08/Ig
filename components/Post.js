@@ -22,6 +22,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import Moment from "react-moment";
+import { useRouter } from "next/router";
 
 function Post({ id, username, userImg, img, caption }) {
   const { data: session } = useSession();
@@ -29,6 +30,7 @@ function Post({ id, username, userImg, img, caption }) {
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
+  const router = useRouter();
 
   //********Likes**********
   //3. save likes in setLikes array
@@ -94,7 +96,7 @@ function Post({ id, username, userImg, img, caption }) {
   };
 
   return (
-    <div className="bg-white border my-7 rounded-md">
+    <div className="bg-white border my-7 rounded-lg">
       {/* Header */}
       <div className="flex items-center p-5">
         <img
@@ -132,10 +134,8 @@ function Post({ id, username, userImg, img, caption }) {
         </div>
       )}
 
-      {/* likes count */}
-
-      {/* Caption */}
-      <p className="p-5 truncate text-lg">
+      {/* Caption and likes count */}
+      <div className="p-5 truncate text-lg">
         {likes.length > 1 && (
           <p className="font-bold mb-1">{likes.length} likes</p>
         )}
@@ -144,12 +144,12 @@ function Post({ id, username, userImg, img, caption }) {
         )}
         <span className="font-bold mr-1">{username} </span>
         {caption}
-      </p>
+      </div>
 
       {/* comments */}
-      {comments.length > 0 && (
+      {(session && comments.length > 0) && (
         <div className="pl-3 pr-5 ml-5 h-20 overflow-y-scroll">
-          {comments.map((comment) => (
+          {comments.slice(0, 2).map((comment) => (
             <div key={comment.id} className="flex items-center space-x-2 mb-3">
               <img
                 className="h-7 rounded-full"
@@ -171,25 +171,36 @@ function Post({ id, username, userImg, img, caption }) {
         </div>
       )}
 
-      {/* input box */}
-      <form className="flex items-center p-4">
-        <EmojiHappyIcon className="h-7" />
-        <input
-          className="flex-1 border-none outline-none focus:ring-0"
-          type="text"
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="Add a comment..."
-        />
-        <button
-          type="submit"
-          disabled={!comment.trim()}
-          onClick={sendComment}
-          className="font-semibold text-blue-400"
+      {(session && comments.length > 3) && (
+        <p
+          onClick={() => router.push(`/p/${id}`)}
+          className="text-gray-400 pl-3 pr-5 ml-5 cursor-pointer"
         >
-          Post
-        </button>
-      </form>
+          View all {comments.length} comments
+        </p>
+      )}
+
+      {/* input box */}
+      {session && (
+        <form className="flex items-center p-4">
+          <EmojiHappyIcon className="h-7" />
+          <input
+            className="flex-1 border-none outline-none focus:ring-0"
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Add a comment..."
+          />
+          <button
+            type="submit"
+            disabled={!comment.trim()}
+            onClick={sendComment}
+            className="font-semibold text-blue-400"
+          >
+            Post
+          </button>
+        </form>
+      )}
     </div>
   );
 }
