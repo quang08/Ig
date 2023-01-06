@@ -139,7 +139,7 @@ function Modal() {
 
                     <div className="mt-2">
                       <input
-                        className="border-none focus:ring-0 w-full text-center"
+                        className="border-none focus:ring-0 w-full text-center dark:text-black"
                         type="text"
                         ref={captionRef}
                         placeholder="Please enter a caption..."
