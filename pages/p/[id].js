@@ -115,7 +115,8 @@ function Comments({ id }) {
             {/* img */}
             <img
               src={post.image}
-              className="w-full object-cover rounded-t-lg md:rounded-tl-lg md:rounded-tr-none"
+              className="w-full object-cover  md:rounded-tl-lg md:rounded-tr-none"
+              alt='post'
             />
             <div>
               {session && likes.length > 1 && (

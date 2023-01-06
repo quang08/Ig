@@ -53,6 +53,7 @@ function Header({ currentTheme }) {
               src="https://links.papareact.com/ocw"
               layout="fill"
               objectFit="contain"
+              alt="logo"
             />
           )}
         </div>

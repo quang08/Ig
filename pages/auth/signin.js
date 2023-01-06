@@ -13,7 +13,7 @@ export default function SignIn({ providers }) {
       <Header currentTheme={currentTheme} />
 
       <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center">
-        <img className="w-80" src='https://links.papareact.com/ocw'/>
+        <Image className="w-80" width={90} height={160} src='https://links.papareact.com/ocw'/>
         <div className="mt-20">
           {Object.values(providers).map((provider) => (
             <div key={provider.name}>

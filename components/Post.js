@@ -110,7 +110,7 @@ function Post({ id, username, userImg, img, caption, timestamp }) {
       </div>
 
       {/* img */}
-      <img src={img} className="w-full object-cover" />
+      <img src={img} className="w-full object-cover" alt='post' />
 
       {/* Buttons */}
       {session && (
