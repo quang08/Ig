@@ -1,5 +1,4 @@
 import React from 'react'
-import ppf from "../public/3.png";
 import Image from 'next/image';
 import { useSession, signIn, signOut } from "next-auth/react";
 

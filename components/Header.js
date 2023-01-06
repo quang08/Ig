@@ -10,7 +10,6 @@ import {
 } from "@heroicons/react/outline";
 
 import { HomeIcon } from "@heroicons/react/solid";
-import ppf from "../public/3.png";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
