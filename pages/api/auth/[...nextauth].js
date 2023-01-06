@@ -10,18 +10,20 @@ export const authOptions = {
     }),
     // ...add more providers here
   ],
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth/signin",
   },
-  callbacks: { //modify session's info
-    async session({ session, token, user }) { 
+  callbacks: {
+    //modify session's info
+    async session({ session, token, user }) {
       session.user.username = session.user.name
         .split(" ")
         .join("")
         .toLocaleLowerCase();
 
-        session.user.uid = token.sub;
-        return session;
+      session.user.uid = token.sub;
+      return session;
     },
   },
 };
