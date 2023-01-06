@@ -2,11 +2,15 @@ import React from "react";
 import { getProviders, signIn as SignIntoProvider } from "next-auth/react";
 import Header from "../../components/Header";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 export default function SignIn({ providers }) {
+  const { systemTheme, theme, setTheme } = useTheme();
+  const currentTheme = systemTheme;
+
   return (
     <>
-      <Header />
+      <Header currentTheme={currentTheme} />
 
       <div className="flex flex-col items-center justify-center min-h-screen py-2 -mt-56 px-14 text-center">
         <img className="w-80" src='https://links.papareact.com/ocw'/>

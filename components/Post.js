@@ -175,7 +175,7 @@ function Post({ id, username, userImg, img, caption, timestamp }) {
       )}
 
       <Moment className="text-gray-400 text-sm pl-5 pr-5 uppercase" fromNow>
-        {timestamp.toDate()}
+        {timestamp?.toDate()}
       </Moment>
 
       {/* input box */}
