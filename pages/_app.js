@@ -8,7 +8,7 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   return (
-    <ThemeProvider>
+    <ThemeProvider attribute="class">
       <SessionProvider session={session}>
         <RecoilRoot>
           <Component {...pageProps} />
