@@ -26,6 +26,7 @@ import {
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import Moment from "react-moment";
 import Header from "../../components/Header";
+import { useTheme } from "next-themes";
 
 function Comments({ id }) {
   const { data: session } = useSession();
@@ -34,6 +35,11 @@ function Comments({ id }) {
   const [comment, setComment] = useState("");
   const [likes, setLikes] = useState([]);
   const [hasLiked, setHasLiked] = useState(false);
+
+  const { systemTheme, theme, setTheme } = useTheme();
+  const currentTheme = systemTheme;
+
+  console.log(currentTheme);
 
   //get specific post
   const getPost = async () => {
@@ -103,8 +109,8 @@ function Comments({ id }) {
     }
   };
   return (
-    <div className="dark:bg-neutral-900">
-      <Header />
+    <div className="dark:bg-neutral-900 h-vh">
+      <Header currentTheme={currentTheme}/>
       <div className="grid grid-cols-1 max-w-xl md:max-w-6xl mx-auto my-auto dark:text-white dark:bg-neutral-900">
         <div className="bg-white border my-7 rounded-xl grid md:grid-cols-2 dark:bg-black dark:border-none">
           <div className="col-span-1">
