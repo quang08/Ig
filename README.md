@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Instagram 2.0
 
-## Getting Started
+When people take pictures to post them on social media, chances are they are posting them on Instagram. Loved by millions, I am no exception, as a daily user I  have always interested in knowing how Instagram works under the roof. So no better way to learn it than to challenge myself to recreate this beloved platform :)!.
 
-First, run the development server:
+## [Live site](https://ig-quang08.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Tech Stack
+- NextJS
+- NextAuth for Google OAuth2
+- TailwindCSS
+- Firebase (Firestore, Storage)
+- Recoil for State Management
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+- Built a fully functional Instagram feed with comments and view specific post details using NextJS with Recoil as a state management tool.
+- Used Tailwind CSS to build a mobile responsive web app.
+- Designed and implemented a custom authentication screen using NextAuth.
+- Utilized  Firebase v9 for backend with Firebase storage API and upload images!
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Preview
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1. Feed / App Overview
+<img width="403" alt="1" src="https://user-images.githubusercontent.com/84165564/211017498-3619c23d-adf3-4eea-bd1d-0a8443d54e85.png">
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. Individual post page + scrollable comment section
+<img width="594" alt="2" src="https://user-images.githubusercontent.com/84165564/211017590-7fb69811-309b-4086-8a77-62b52aa318bf.png">
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Upload modal
+<img width="594" alt="3" src="https://user-images.githubusercontent.com/84165564/211017802-8127a0df-7e66-4691-92d1-3ca818f3b3d0.png">
+<img width="594" alt="4" src="https://user-images.githubusercontent.com/84165564/211017904-3a0b6ce5-b0d0-4a32-bc74-8e8ad49a6f05.png">
 
-## Learn More
+5. Mobile view
+<img width="291" alt="5" src="https://user-images.githubusercontent.com/84165564/211017942-aa465217-3c2c-412d-94ec-d7a082263633.png">
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<img width="294" alt="6" src="https://user-images.githubusercontent.com/84165564/211018042-97b18e29-6eed-4b48-8f51-c88dc5f898bf.png">
