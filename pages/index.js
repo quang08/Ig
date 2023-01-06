@@ -11,8 +11,6 @@ export default function Home() {
 
   const currentTheme = systemTheme;
 
-  console.log(currentTheme)
-
   return (
     <div className="bg-gray-50 h-screen overflow-y-scroll dark:bg-neutral-900">
       <Header currentTheme={currentTheme} />

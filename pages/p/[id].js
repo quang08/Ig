@@ -39,8 +39,6 @@ function Comments({ id }) {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = systemTheme;
 
-  console.log(currentTheme);
-
   //get specific post
   const getPost = async () => {
     const docRef = doc(db, "posts", id);
@@ -109,7 +107,7 @@ function Comments({ id }) {
     }
   };
   return (
-    <div className="dark:bg-neutral-900 h-vh">
+    <div className="dark:bg-neutral-900 min-h-screen">
       <Header currentTheme={currentTheme}/>
       <div className="grid grid-cols-1 max-w-xl md:max-w-6xl mx-auto my-auto dark:text-white dark:bg-neutral-900">
         <div className="bg-white border my-7 rounded-xl grid md:grid-cols-2 dark:bg-black dark:border-none">
