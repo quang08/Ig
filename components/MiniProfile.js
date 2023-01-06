@@ -11,7 +11,6 @@ function MiniProfile() {
     <div className="flex items-center justify-between mt-14 ml-10">
       {/*<Image src={ppf} className='h-16 w-16 rounded-full p-[2px] border object-cover'/>*/}
       <img
-        onClick={signOut}
         src={session?.user?.image}
         alt="profile pic"
         className="h-10 w-10 rounded-full cursor-pointer object-cover"
@@ -22,7 +21,9 @@ function MiniProfile() {
         <h3 className="text-sm text-gray-400">Quang</h3>
       </div>
 
-      <button className="text-blue-400 font-semibold text-sm">Sign Out</button>
+      <button onClick={signOut} className="text-blue-400 font-semibold text-sm">
+        Sign Out
+      </button>
     </div>
   );
 }
